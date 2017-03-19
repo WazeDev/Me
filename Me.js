@@ -6,6 +6,7 @@
 // @match        https://*.waze.com/*editor*
 // @match		 https://*.beta.waze.com/*
 // @require      https://greasyfork.org/scripts/24851-wazewrap/code/WazeWrap.js
+// @namespace    https://greasyfork.org/users/30701
 // @grant        none
 // ==/UserScript==
 
