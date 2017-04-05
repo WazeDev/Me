@@ -1,10 +1,12 @@
 // ==UserScript==
 // @name         WME Me
-// @version      0.0.4
+// @version      0.0.5
 // @description  Adds a layer to WME that draws ME on the map!
 // @author       JustinS83 (Original author: Joshua M. Kriegshauser)
-// @match        https://*.waze.com/*editor*
-// @match		 https://*.beta.waze.com/*
+// @include      https://www.waze.com/editor/*
+// @include      https://www.waze.com/*/editor/*
+// @include      https://beta.waze.com/*
+// @exclude      https://www.waze.com/user/editor*
 // @require      https://greasyfork.org/scripts/24851-wazewrap/code/WazeWrap.js
 // @namespace    https://greasyfork.org/users/30701
 // @grant        none
