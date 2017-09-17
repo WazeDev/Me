@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         WME Me
-// @version      0.0.7
+// @version      0.0.8
 // @description  Adds a layer to WME that draws ME on the map!
 // @author       JustinS83 (Original author: Joshua M. Kriegshauser)
 // @include      https://www.waze.com/editor*
@@ -87,9 +87,9 @@
         if (!W.model.chat.attributes.visible)
             icon.setOpacity(0.5);
 
-        W.model.chat._events.register('change:visible', null, function(e) {
+        W.model.chat._events["change:visible"].push({callback: function(e) {
             icon.setOpacity(W.model.chat.attributes.visible ? 1.0 : 0.5);
-        });
+        }});
 
         $(icon.imageDiv).click(function(){settings.showName=!settings.showName; SetName(settings.showName); saveSettings();});
 
