@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         WME Me
-// @version      0.0.7
+// @version      0.0.8
 // @description  Adds a layer to WME that draws ME on the map!
 // @author       JustinS83 (Original author: Joshua M. Kriegshauser)
 // @include      https://www.waze.com/editor*
@@ -11,12 +11,6 @@
 // @namespace    https://greasyfork.org/users/30701
 // @grant        none
 // ==/UserScript==
-
-// Version history
-// 0.0.1 - Initial release
-// 0.0.2 - Tweening of Me, faded Me always follows the center while panning, Me is faded when invisible in chat
-// 0.0.2.1 - Change match line to support international editors
-// 0.0.3 - Added 'Me!' text to the Me Wazer
 
 (function() {
     'use strict';
@@ -87,9 +81,9 @@
         if (!W.model.chat.attributes.visible)
             icon.setOpacity(0.5);
 
-        W.model.chat._events.register('change:visible', null, function(e) {
+        W.model.chat._events["change:visible"].push({callback:function(e) {
             icon.setOpacity(W.model.chat.attributes.visible ? 1.0 : 0.5);
-        });
+        }});
 
         $(icon.imageDiv).click(function(){settings.showName=!settings.showName; SetName(settings.showName); saveSettings();});
 
