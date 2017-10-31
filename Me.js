@@ -19,7 +19,6 @@
     var WMEMe_Marker = null;
     var WMEMe_TempMarker = null;
     var settings = {};
-
     var wazerMap = {};
 
     function WMEMe_ZoomEnd() {
