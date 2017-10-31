@@ -114,7 +114,6 @@
         I18n.translations[I18n.currentLocale()].layers.name['__WMEMe'] = 'Me!';
 
         W.map.addLayer(newLayer);
-
         newLayer.setVisibility(settings.layerEnabled);
 
         WazeWrap.Interface.AddLayerCheckbox("display", "Me", settings.layerEnabled, function(enabled){newLayer.setVisibility(enabled); settings.layerEnabled = enabled; saveSettings();});
