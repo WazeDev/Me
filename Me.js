@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         WME Me
-// @version      2017.10.31.01
+// @version      2018.01.25.01
 // @description  Adds a layer to WME that draws ME on the map!
 // @author       JustinS83 (Original author: Joshua M. Kriegshauser)
 // @include      https://www.waze.com/editor*
@@ -166,7 +166,7 @@
 
     function WMEMe_Bootstrap() {
         console.log('WMEMe_Bootstrap');
-        if ($('#user-info') !== undefined && W && W.map && W.model && W.model.chat && W.model.chat.attributes && OpenLayers && OpenLayers.Layer && WazeWrap.User) {
+        if ($('#user-info') !== undefined && W && W.map && W.model && W.model.chat && W.model.chat.attributes && OpenLayers && OpenLayers.Layer && WazeWrap.Ready) {
             // Found the me panel
             WMEMe_Install();
         }
