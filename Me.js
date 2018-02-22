@@ -51,7 +51,7 @@
                           wazerMap[r].width, wazerMap[r].height); // Size to draw on the new canvas
         var croppedImage = canvas.toDataURL();
 
-        icon = new OpenLayers.Icon(croppedImage, new OpenLayers.Size(wazerMap[r].width,wazerMap[r].height), new OpenLayers.Pixel(-(wazerMap[r].width/2),-wazerMap[r].height));
+        icon = new OL.Icon(croppedImage, new OL.Size(wazerMap[r].width,wazerMap[r].height), new OL.Pixel(-(wazerMap[r].width/2),-wazerMap[r].height));
 
         // Me! Text
         if(settings.showName)
@@ -71,18 +71,18 @@
         W.map.events.register('movestart', null, function(e) {
             var iconClone = icon.clone();
             iconClone.setOpacity(0.2);
-            WMEMe_TempMarker = new OpenLayers.Marker(W.map.center, iconClone);
+            WMEMe_TempMarker = new OL.Marker(W.map.center, iconClone);
             newLayer.addMarker(WMEMe_TempMarker);
         });
 
-        WMEMe_Marker = new OpenLayers.Marker(W.map.center, icon);
+        WMEMe_Marker = new OL.Marker(W.map.center, icon);
         newLayer.addMarker(WMEMe_Marker);
     }
 
     function WMEMe_InstallIcon() {
-        OpenLayers.Icon=OpenLayers.Class({url:null,size:null,offset:null,calculateOffset:null,imageDiv:null,px:null,initialize:function(a,b,c,d){this.url=a;this.size=b||{w:20,h:20};this.offset=c||{x:-(this.size.w/2),y:-(this.size.h/2)};this.calculateOffset=d;a=OpenLayers.Util.createUniqueID("OL_Icon_");this.imageDiv=OpenLayers.Util.createAlphaImageDiv(a)},destroy:function(){this.erase();OpenLayers.Event.stopObservingElement(this.imageDiv.firstChild);this.imageDiv.innerHTML="";this.imageDiv=null},clone:function(){return new OpenLayers.Icon(this.url,
-	this.size,this.offset,this.calculateOffset)},setSize:function(a){null!=a&&(this.size=a);this.draw()},setUrl:function(a){null!=a&&(this.url=a);this.draw()},draw:function(a){OpenLayers.Util.modifyAlphaImageDiv(this.imageDiv,null,null,this.size,this.url,"absolute");this.moveTo(a);return this.imageDiv},erase:function(){null!=this.imageDiv&&null!=this.imageDiv.parentNode&&OpenLayers.Element.remove(this.imageDiv)},setOpacity:function(a){OpenLayers.Util.modifyAlphaImageDiv(this.imageDiv,null,null,null,null,
-	null,null,null,a)},moveTo:function(a){null!=a&&(this.px=a);null!=this.imageDiv&&(null==this.px?this.display(!1):(this.calculateOffset&&(this.offset=this.calculateOffset(this.size)),OpenLayers.Util.modifyAlphaImageDiv(this.imageDiv,null,{x:this.px.x+this.offset.x,y:this.px.y+this.offset.y})))},display:function(a){this.imageDiv.style.display=a?"":"none"},isDrawn:function(){return this.imageDiv&&this.imageDiv.parentNode&&11!=this.imageDiv.parentNode.nodeType},CLASS_NAME:"OpenLayers.Icon"});
+        OL.Icon=OL.Class({url:null,size:null,offset:null,calculateOffset:null,imageDiv:null,px:null,initialize:function(a,b,c,d){this.url=a;this.size=b||{w:20,h:20};this.offset=c||{x:-(this.size.w/2),y:-(this.size.h/2)};this.calculateOffset=d;a=OL.Util.createUniqueID("OL_Icon_");this.imageDiv=OL.Util.createAlphaImageDiv(a)},destroy:function(){this.erase();OL.Event.stopObservingElement(this.imageDiv.firstChild);this.imageDiv.innerHTML="";this.imageDiv=null},clone:function(){return new OL.Icon(this.url,
+	this.size,this.offset,this.calculateOffset)},setSize:function(a){null!=a&&(this.size=a);this.draw()},setUrl:function(a){null!=a&&(this.url=a);this.draw()},draw:function(a){OL.Util.modifyAlphaImageDiv(this.imageDiv,null,null,this.size,this.url,"absolute");this.moveTo(a);return this.imageDiv},erase:function(){null!=this.imageDiv&&null!=this.imageDiv.parentNode&&OL.Element.remove(this.imageDiv)},setOpacity:function(a){OL.Util.modifyAlphaImageDiv(this.imageDiv,null,null,null,null,
+	null,null,null,a)},moveTo:function(a){null!=a&&(this.px=a);null!=this.imageDiv&&(null==this.px?this.display(!1):(this.calculateOffset&&(this.offset=this.calculateOffset(this.size)),OL.Util.modifyAlphaImageDiv(this.imageDiv,null,{x:this.px.x+this.offset.x,y:this.px.y+this.offset.y})))},display:function(a){this.imageDiv.style.display=a?"":"none"},isDrawn:function(){return this.imageDiv&&this.imageDiv.parentNode&&11!=this.imageDiv.parentNode.nodeType},CLASS_NAME:"OL.Icon"});
     }
 
     var ctx, icon, newLayer;
@@ -90,13 +90,13 @@
     function WMEMe_Install() {
         loadSettings();
         var layer = W.map.getLayersBy('uniqueName', '__WMEMe');
-        newLayer = new OpenLayers.Layer.Markers('Me!', {
+        newLayer = new OL.Layer.Markers('Me!', {
             displayInLayerSwitcher: true,
             uniqueName: '__WMEMe'
         });
 
-        // For some reason, OpenLayers.Icon is missing?!?
-        if (!OpenLayers.Icon) {
+        // For some reason, OL.Icon is missing?!?
+        if (!OL.Icon) {
             WMEMe_InstallIcon();
         }
 
@@ -109,7 +109,7 @@
         wazerMap["6"] = {x:0, y:0, width:83, height:62};
 
         WMEMe_Layer = newLayer;
-        var tween = new OpenLayers.Tween(OpenLayers.Easing.Linear.easeInOut);
+        var tween = new OL.Tween(OL.Easing.Linear.easeInOut);
 
         I18n.translations[I18n.currentLocale()].layers.name['__WMEMe'] = 'Me!';
 
@@ -166,7 +166,7 @@
 
     function WMEMe_Bootstrap() {
         console.log('WMEMe_Bootstrap');
-        if ($('#user-info') !== undefined && W && W.map && W.model && W.model.chat && W.model.chat.attributes && OpenLayers && OpenLayers.Layer && WazeWrap.Ready) {
+        if ($('#user-info') !== undefined && W && W.map && W.model && W.model.chat && W.model.chat.attributes && OL && OL.Layer && WazeWrap.Ready) {
             // Found the me panel
             WMEMe_Install();
         }
