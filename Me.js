@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         WME Me
-// @version      2018.02.26.01
+// @version      2020.06.19.01
 // @description  Adds a layer to WME that draws ME on the map!
 // @author       JustinS83 (Original author: Joshua M. Kriegshauser)
 // @include      https://www.waze.com/editor*
